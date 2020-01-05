@@ -95,14 +95,38 @@ class LinkedList {
     const newNode = new Node(data, previous.next)
     previous.next = newNode
   }
+
+  forEach(fn) {
+    if (!this.head) return null
+    let counter = 0
+    let node = this.head
+    while (counter < this.size()) {
+      if (!node.next) return
+      fn(node, counter)
+      node = node.next
+      counter++
+    }
+    return node
+  }
+
+  *[Symbol.iterator]() {
+    let node = this.head
+    while (node) {
+      yield node
+      node = node.next
+    }
+  }
 }
 
 const list = new LinkedList()
-list.insertLast('a')
-list.insertLast('b')
-list.insertLast('c')
-list.insertLast('d')
-list.insertAt('z', 2)
-console.log(list.getAt(1))
+list.insertLast(1)
+list.insertLast(2)
+list.insertLast(3)
+list.insertLast(4)
+list.insertLast(5)
 
-module.exports = { Node, LinkedList }
+for (const node of list) {
+  node.data += 10
+}
+
+module.exports = { Node, LinkedList, list }
