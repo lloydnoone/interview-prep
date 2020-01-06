@@ -32,6 +32,6 @@ tree.root.add(40)
 tree.traverseBF((node) => {
   node.data += 50
 })
-console.log(tree)
+//console.log(tree)
 
-module.exports = Tree
+module.exports = tree
